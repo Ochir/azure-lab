@@ -1,0 +1,469 @@
+{
+  "ApplicationName": "FarmTransfer",
+  "DisplayName": "Farm Transfer 2 IoT",
+  "Description": "certification task.",
+  "ApplicationRoles": [
+    {
+      "Name": "Farmer",
+      "Description": "First party who created a product."
+    },
+    {
+      "Name": "Provider",
+      "Description": "A party who stores or transports a shipment."
+    },
+    {
+      "Name": "Seller",
+      "Description": "A party who sells product"
+    },
+    {
+      "Name": "Buyer",
+      "Description": "The end consumer"
+    },
+    {
+      "Name": "Device",
+      "Description": "A device to track humidity and temperature."
+    }    
+  ],
+  "Workflows": [
+    {
+      "Name": "FarmTransfer",
+      "DisplayName": "Farm Transfer IoT",
+      "Description": "Main workflow to track end-to-end transportation of perishable goods.",
+      "Initiators": [ "Farmer" ],
+      "StartState": "Created",
+      "Properties": [
+        {
+          "Name": "State",
+          "DisplayName": "State",
+          "Description": "Holds the state of the contract",
+          "Type": {
+            "Name": "state"
+          }
+        },
+        {
+          "Name": "Farmer",
+          "DisplayName": "Farmer",
+          "Description": "First party who created a product",
+          "Type": {
+            "Name": "Farmer"
+          }
+        },
+        {
+          "Name": "Provider",
+          "DisplayName": "Provider",
+          "Description": "A party who stores or transports a shipment.",
+          "Type": {
+            "Name": "Provider"
+          }
+        },
+        {
+          "Name": "Seller",
+          "DisplayName": "Current Seller",
+          "Description": "A party who sells product",
+          "Type": {
+            "Name": "Seller"
+          }
+        },
+        {
+          "Name": "Buyer",
+          "DisplayName": "Last Party",
+          "Description": "The end consumer.",
+          "Type": {
+            "Name": "Buyer"
+          }
+        },
+        {
+          "Name": "Device",
+          "DisplayName": "Device",
+          "Description": "The device used to track humidity and temperature of the shipment.",
+          "Type": {
+            "Name": "Device"
+          }
+        },        
+        {
+          "Name": "Description",
+          "Description": "...",
+          "DisplayName": "Description",
+          "Type": {
+            "Name": "string"
+          }
+        },        
+        {
+          "Name": "Price",
+          "DisplayName": "Price",
+          "Description": "Initial price",
+          "Type": {
+            "Name": "money"
+          }
+        },      
+        {
+          "Name": "Quantity",
+          "DisplayName": "Quantity",
+          "Description": "Initial quantity",
+          "Type": {
+            "Name": "int"
+          }
+        },              
+        {
+          "Name": "MinTemperature",
+          "DisplayName": "Min Temperature",
+          "Description": "Min temperature requirement.",
+          "Type": {
+            "Name": "int"
+          }
+        },
+        {
+          "Name": "MaxTemperature",
+          "DisplayName": "Max Temperature",
+          "Description": "Max temperature requirement.",
+          "Type": {
+            "Name": "int"
+          }
+        },        
+        {
+          "Name": "MinHumidity",
+          "DisplayName": "Min Humidity",
+          "Description": "Minimum humidity requirement.",
+          "Type": {
+            "Name": "int"
+          }
+        },
+        {
+          "Name": "MaxHumidity",
+          "DisplayName": "Max Humidity",
+          "Description": "Max humidity requirement.",
+          "Type": {
+            "Name": "int"
+          }
+        },
+        {
+          "Name": "ComplianceStatus",
+          "DisplayName": "Status",
+          "Description": "Boolean to indicate whether the shipment is in compliance or not.",
+          "Type": {
+            "Name": "bool"
+          }
+        },
+        {
+          "Name": "FarmerBalance",
+          "DisplayName": "Balance of Farmer",
+          "Description": "Current balance of Farmer.",
+          "Type": {
+            "Name": "money"
+          }
+        },
+        {
+          "Name": "ProviderBalance",
+          "DisplayName": "Balance of Provider",
+          "Description": "Current balance of Provider.",
+          "Type": {
+            "Name": "money"
+          }
+        },
+        {
+          "Name": "SellerBalance",
+          "DisplayName": "Balance of Seller",
+          "Description": "Current balance of Seller.",
+          "Type": {
+            "Name": "money"
+          }
+        },
+        {
+          "Name": "BuyerBalance",
+          "DisplayName": "Balance of Consumer",
+          "Description": "Current balance of Consumer.",
+          "Type": {
+            "Name": "money"
+          }          
+        },
+        {
+          "Name": "LastSensorUpdateTimestamp",
+          "DisplayName": "Sensor Time",
+          "Description": "The time the sensor reading was taken.",
+          "Type": {
+            "Name": "int"
+          }                            
+        }  
+      ],    
+      "Constructor": {
+        "Parameters": [
+          {
+            "Name": "device",
+            "Description": "...",
+            "DisplayName": "Device",
+            "Type": {
+              "Name": "Device"
+            }
+          },          
+          {
+            "Name": "description",
+            "Description": "...",
+            "DisplayName": "Description",
+            "Type": {
+              "Name": "string"
+            }
+          },
+          {
+            "Name": "price",
+            "Description": "Price",
+            "DisplayName": "Price",
+            "Type": {
+              "Name": "money"
+            }
+          },
+          {
+            "Name": "quantity",
+            "Description": "Quantity",
+            "DisplayName": "Quantity",
+            "Type": {
+              "Name": "int"
+            }
+          },
+          {
+            "Name": "mintemp",
+            "Description": "...",
+            "DisplayName": "Min Temperature",
+            "Type": {
+              "Name": "int"
+            }
+          },
+          {
+            "Name": "maxtemp",
+            "Description": "...",
+            "DisplayName": "Max Temperature",
+            "Type": {
+              "Name": "int"
+            }
+          },
+          {
+            "Name": "minhumid",
+            "Description": "...",
+            "DisplayName": "Min Humidity",
+            "Type": {
+              "Name": "int"
+            }
+          },        
+          {
+            "Name": "maxhumid",
+            "Description": "...",
+            "DisplayName": "Max Humidity",
+            "Type": {
+              "Name": "int"
+            }
+          }        
+        ]
+      },
+      "Functions": [                      
+        {
+          "Name": "ReadyToTransport",
+          "DisplayName": "Ready to transport",
+          "Description": "...",
+          "Parameters": []
+        },
+        {
+          "Name": "OnTheWay",
+          "DisplayName": "on the way",
+          "Description": "...",
+          "Parameters": [
+            {
+              "Name": "humidity",
+              "Description": "...",
+              "DisplayName": "Humidity",
+              "Type": {
+              "Name": "int"
+              }
+            },
+            {
+              "Name": "temperature",
+              "Description": "...",
+              "DisplayName": "Temperature",
+              "Type": {
+              "Name": "int"
+              }
+            },
+            {
+              "Name": "timestamp",
+              "Description": "...",
+              "DisplayName": "Timestamp",
+              "Type": {
+                "Name": "int"
+              }
+            }            
+          ]
+        },
+        {
+          "Name": "Delivered",
+          "DisplayName": "Delivered",
+          "Description": "...",
+          "Parameters": []
+        },        
+        {
+          "Name": "Available",
+          "DisplayName": "Available",
+          "Description": "...",
+          "Parameters": []
+        },              
+        {
+          "Name": "Selled",
+          "DisplayName": "selled",
+          "Description": "...",
+          "Parameters": []
+        },     
+        {
+          "Name": "Cancelled",
+          "DisplayName": "cancelled",
+          "Description": "...",
+          "Parameters": []          
+        },           
+        {
+          "Name": "Terminate",
+          "DisplayName": "Terminate",
+          "Description": "...",
+          "Parameters": []
+        }               
+      ],
+      "States": [
+        {
+          "Name": "Created",
+          "DisplayName": "Created",
+          "Description": "...",
+          "PercentComplete": 20,
+          "Value": 0,
+          "Style": "Success",
+          "Transitions": [
+            {
+              "AllowedRoles": [ "Provider" ],
+              "AllowedInstanceRoles": [],
+              "Description": "...",
+              "Function": "ReadyToTransport",
+              "NextStates": [ "ReadyToTransport" ],
+              "DisplayName": "Initial creation by farmer"
+            }, 
+            {
+              "AllowedRoles": [ "Provider" ],
+              "AllowedInstanceRoles": [],
+              "Description": "...",
+              "Function": "Terminate",
+              "NextStates": [ "Terminated" ],
+              "DisplayName": "Cancel order"
+            }                      
+          ]
+        },  
+        {
+          "Name": "ReadyToTransport",
+          "DisplayName": "In Transit",
+          "Description": "...",
+          "PercentComplete": 40,
+          "Value": 1,
+          "Style": "Success",
+          "Transitions": [
+            {
+              "AllowedRoles": [],
+              "AllowedInstanceRoles": [ "Provider" ],
+              "Description": "...",
+              "Function": "OnTheWay",
+              "NextStates": [ "InTransit" ],
+              "DisplayName": "Transfer Responsibility"
+            },
+            {
+              "AllowedRoles": [ ],
+              "AllowedInstanceRoles": ["Provider"],
+              "Description": "...",
+              "Function": "Terminate",
+              "NextStates": [ "Terminated" ],
+              "DisplayName": "Cancel order"
+            }              
+          ]
+        },
+        {
+          "Name": "InTransit",
+          "DisplayName": "In Transit",
+          "Description": "...",
+          "PercentComplete": 50,
+          "Value": 1,
+          "Style": "Success",
+          "Transitions": [
+            {
+              "AllowedRoles": ["Seller"],
+              "AllowedInstanceRoles": [  ],
+              "Description": "...",
+              "Function": "Delivered",
+              "NextStates": [ "Delivered" ],
+              "DisplayName": "On the way"
+            },
+            {
+              "AllowedRoles": ["Seller"],
+              "AllowedInstanceRoles": [],
+              "Description": "...",
+              "Function": "Cancelled",
+              "NextStates": [ "Cancelled" ],
+              "DisplayName": "Cancel order"
+            }                
+          ]
+        },     
+        {
+          "Name": "Delivered",
+          "DisplayName": "Delivered",
+          "Description": "...",
+          "PercentComplete": 75,
+          "Value": 2,
+          "Style": "Success",
+          "Transitions": [
+            {
+              "AllowedRoles": ["Seller"],
+              "AllowedInstanceRoles": [  ],
+              "Description": "...",
+              "Function": "Available",
+              "NextStates": [ "Available" ],
+              "DisplayName": "deliver to shop"
+            }                         
+          ]
+        },  
+        {
+          "Name": "Available",
+          "DisplayName": "Available",
+          "Description": "...",
+          "PercentComplete": 90,
+          "Value": 2,
+          "Style": "Success",
+          "Transitions": [
+            {
+              "AllowedRoles": ["Buyer"],
+              "AllowedInstanceRoles": [  ],
+              "Description": "...",
+              "Function": "Selled",
+              "NextStates": [ "Selled" ],
+              "DisplayName": "deliver to shop"
+            }            
+          ]
+        },                        
+        {
+          "Name": "Selled",
+          "DisplayName": "Selled",
+          "Description": "...",
+          "PercentComplete": 100,
+          "Value": 1,
+          "Style": "Success",
+          "Transitions": []
+        },   
+        {
+          "Name": "Cancelled",
+          "DisplayName": "Cancelled",
+          "Description": "...",
+          "PercentComplete": 100,
+          "Value": 3,
+          "Style": "Failure",
+          "Transitions": []
+        },
+        {
+          "Name": "Terminated",
+          "DisplayName": "Terminated",
+          "Description": "Transfer has been cancelled",
+          "PercentComplete": 100,
+          "Style": "Failure",
+          "Transitions": []
+        }        
+      ]
+    }
+  ]
+}
